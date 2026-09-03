@@ -24,5 +24,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(adminRoutes);
 app.use(shopRoutes);
 
+// 404 page not found. If the user tries to access a page that does not exist, this will be the response.
+app.use((req, res, next) => {
+  res.status(404).send("<h1>Page Not Found</h1>");
+});
+
 // local host where I choose what port. 3000 just sounds the best
 app.listen(3000);
