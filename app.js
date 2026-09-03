@@ -1,5 +1,4 @@
-//node specific modules
-// const http = require("http");
+const path = require("path");
 
 // third party modules
 const express = require("express");
@@ -19,6 +18,7 @@ app.get("/.well-known/appspecific/com.chrome.devtools.json", (req, res) =>
 );
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 // These are the ROUTES they exist in the routes folder
 app.use("/admin", adminRoutes);
@@ -26,7 +26,7 @@ app.use(shopRoutes);
 
 // 404 page not found. If the user tries to access a page that does not exist, this will be the response.
 app.use((req, res, next) => {
-  res.status(404).send("<h1>Page Not Found</h1>");
+  res.status(404).sendFile(path.join(__dirname, "views", "not-found.html"));
 });
 
 // local host where I choose what port. 3000 just sounds the best

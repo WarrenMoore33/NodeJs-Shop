@@ -5,16 +5,32 @@
   "main": "app.js",
   "scripts": {
     "test": "node --test",
-    "start": "nodemon app.js",
+    "dev:server": "nodemon app.js",
+    "dev:sass": "sass --watch public/css/main.scss public/css/main.css",
+    "start": "concurrently \"npm run dev:server\" \"npm run dev:sass\"",
     "start-server": "node app.js"
   },
   "author": "Warren Moore",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "concurrently": "^10.0.5",
+    "nodemon": "^3.1.14",
+    "sass": "^1.103.1"
   },
   "dependencies": {
     "body-parser": "^2.3.0",
     "express": "^5.2.1"
+  },
+  "overrides": {
+    "chokidar": "^3.6.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/css/main.css",
+      "public/css/main.css.map",
+      "public/css/product.css",
+      "public/css/main.product.map"
+    ]
   }
+
 }
