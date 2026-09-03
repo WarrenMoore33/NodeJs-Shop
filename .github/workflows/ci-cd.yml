@@ -1,0 +1,32 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    # This tells GitHub to use their own clean Ubuntu virtual machine
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Pulls your code from the GitHub repository into the virtual machine
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Installs the specific Node.js version you want to use
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # You can change this to 18, 22, etc.
+        cache: 'npm'       # Caches your packages to make future builds faster
+
+    # 3. Installs your packages (npm ci is preferred for clean, predictable CI builds)
+    - name: Install dependencies
+      run: npm ci
+
+    # 4. Executes your test script defined in package.json
+    - name: Run tests
+      run: npm test
