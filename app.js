@@ -21,7 +21,7 @@ app.get("/.well-known/appspecific/com.chrome.devtools.json", (req, res) =>
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // These are the ROUTES they exist in the routes folder
-app.use(adminRoutes);
+app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 // 404 page not found. If the user tries to access a page that does not exist, this will be the response.
