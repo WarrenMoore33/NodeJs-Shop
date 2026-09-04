@@ -7,8 +7,11 @@ const bodyParser = require("body-parser");
 // create ExpressJs app
 const app = express();
 
+app.set("view engine", "pug");
+app.set('views', 'views');
+
 // import Routes
-const adminRoutes = require("./routes/admin");
+const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
 // Middlewear
@@ -21,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // These are the ROUTES they exist in the routes folder
-app.use("/admin", adminRoutes);
+app.use("/admin", adminData.routes);
 app.use(shopRoutes);
 
 // 404 page not found. If the user tries to access a page that does not exist, this will be the response.
