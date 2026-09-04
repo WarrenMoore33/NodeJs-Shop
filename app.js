@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.set("view engine", "pug");
-app.set('views', 'views');
+app.set("views", "views");
 
 // import Routes
 const adminData = require("./routes/admin");
@@ -29,7 +29,9 @@ app.use(shopRoutes);
 
 // 404 page not found. If the user tries to access a page that does not exist, this will be the response.
 app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "not-found.html"));
+  res.status(404).render("404", {
+    pageTitle: "Page Not Found",
+  });
 });
 
 // local host where I choose what port. 3000 just sounds the best
