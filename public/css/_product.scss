@@ -4,21 +4,29 @@
   margin: auto;
 }
 
-.form-control {
-  display: block;
-  label,
-  input {
-    font-weight: bold;
-    display: block;
-    width: 100%;
+.product-item {
+  width: 20rem;
+  max-width: 95%;
+}
+
+.product {
+  &__title {
+    font-size: 1.2rem;
+    text-align: center;
   }
-  input {
-    border: 1px solid #dbc441;
-    font: inherit;
-    border-radius: 2px;
-    margin: 0 0 1rem 0;
+
+  &__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+  }
+
+  &__description {
+    text-align: center;
   }
 }
+
+
 
 button {
   font: inherit;
