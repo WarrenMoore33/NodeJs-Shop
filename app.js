@@ -1,38 +1,33 @@
-const path = require("path");
+const path = require('path');
 
-// third party modules
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
+const expressHbs = require('express-handlebars');
 
-// create ExpressJs app
 const app = express();
 
-app.set("view engine", "pug");
-app.set("views", "views");
-
-// import Routes
-const adminData = require("./routes/admin");
-const shopRoutes = require("./routes/shop");
-
-// Middlewear
-app.get("/favicon.ico", (req, res) => res.status(204));
-app.get("/.well-known/appspecific/com.chrome.devtools.json", (req, res) =>
-  res.status(204),
+app.engine(
+  'hbs',
+  expressHbs({
+    layoutsDir: 'views/layouts/',
+    defaultLayout: 'main-layout',
+    extname: 'hbs'
+  })
 );
+app.set('view engine', 'hbs');
+app.set('views', 'views');
+
+const adminData = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// These are the ROUTES they exist in the routes folder
-app.use("/admin", adminData.routes);
+app.use('/admin', adminData.routes);
 app.use(shopRoutes);
 
-// 404 page not found. If the user tries to access a page that does not exist, this will be the response.
 app.use((req, res, next) => {
-  res.status(404).render("404", {
-    pageTitle: "Page Not Found",
-  });
+  res.status(404).render('404', { pageTitle: 'Page Not Found' });
 });
 
-// local host where I choose what port. 3000 just sounds the best
 app.listen(3000);

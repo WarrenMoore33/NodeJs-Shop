@@ -1,9 +1,8 @@
 extends layouts/main-layout.pug
 
-//- block styles
-//-     link(rel="stylesheet", href="/css/product-form.css")
-//- I would add this if I had separate css files but I am using SASS so I
-//- will just add the product-form.css to the main.css file and not have a separate css file for this page.
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
 
 block content
     main
@@ -11,4 +10,4 @@ block content
             .form-control
                 label(for="title") Title
                 input(type="text", name="title")#title
-                button.btn(type="submit") Add Product
+            button.btn(type="submit") Add Product
