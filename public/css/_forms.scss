@@ -1,17 +1,19 @@
-.form-control input:focus {
-  outline-color: #00695c;
-}
 .form-control {
   margin: 1rem 0;
   label,
-  input {
+  input,
+  textarea {
     display: block;
     width: 100%;
     margin-bottom: 0.25rem;
   }
-  input {
+  input,
+  textarea {
     border: 1px solid #a1a1a1;
     font: inherit;
     border-radius: 2px;
+    &:focus {
+      outline-color: #00695c;
+    }
   }
 }
