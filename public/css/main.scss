@@ -1,5 +1,6 @@
 @use "product";
 @use "forms";
+@use "cart";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
 * {
@@ -197,6 +198,15 @@ main {
   &:active {
     background-color: #00695c;
     color: white;
+  }
+  &--delete {
+    color: red;
+    border-color: red;
+    &:hover,
+    &:active {
+      background-color: red;
+      color: white;
+    }
   }
 }
 
