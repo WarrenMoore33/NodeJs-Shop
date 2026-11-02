@@ -34,7 +34,7 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    "mongodb+srv://wcmoore33_db_user:aVnmbRZndx8sMm8j@cluster0.sduinqc.mongodb.net/?appName=shop",
+    "mongodb+srv://wcmoore33_db_user:aVnmbRZndx8sMm8j@cluster0.sduinqc.mongodb.net/shop?appName=Cluster0",
   )
   .then((result) => {
     User.findOne().then((user) => {
